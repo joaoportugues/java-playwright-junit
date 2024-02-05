@@ -1,40 +1,42 @@
 package example;
 
 import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.microsoft.playwright.*;
 import org.junit.jupiter.api.*;
-
-import javax.naming.Context;
-
+import example.extensions.RunnerExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.ExtensionContext;
 
 // Subclasses will inherit PER_CLASS behavior.
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ExtendWith(RunnerExtension.class)
 class TestFixtures {
     // Shared between all tests in the class.
     Playwright playwright;
     Browser browser;
     BrowserContext context;
     Page page;
-    static ExtentReports extent;
+    static ExtentReports extentReport;
 
     @BeforeAll
     void launchBrowser() {
-        extent = new ExtentReports();
+        extentReport = new ExtentReports();
         ExtentSparkReporter spark = new ExtentSparkReporter("target/Spark.html");
-        extent.attachReporter(spark);
+        extentReport.attachReporter(spark);
 
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
+        browser = playwright.chromium().launch(
+/*                new BrowserType.LaunchOptions()
                 .setHeadless(false)
-                .setSlowMo(100));
+                .setSlowMo(100)*/
+        );
     }
 
     @AfterAll
     void closeBrowser() {
-        extent.flush();
+        extentReport.flush();
 
         playwright.close();
     }
@@ -47,8 +49,11 @@ class TestFixtures {
 
     @AfterEach
     void closeContext() {
-        extent.createTest("MyFirstTest")
-                .log(Status.PASS, "This is a logging event for MyFirstTest, and it passed!");
+        boolean testResult = RunnerExtension.getTestResult();
+        String testName = RunnerExtension.getTestName();
+
+        extentReport.createTest(testName)
+                .log(testResult ? Status.PASS : Status.FAIL, "This is a logging event for MyFirstTest");
 
         context.close();
     }

@@ -1,3 +1,5 @@
 example\TestExample.class
+example\extensions\RunnerExtension.class
 models\WikiSearchPage.class
+example\extensions\TimingExtension.class
 example\TestFixtures.class
