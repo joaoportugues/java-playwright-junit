@@ -1,11 +1,7 @@
 package example;
 
-import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.BrowserContext;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
 import org.junit.jupiter.api.*;
-
+import models.WikiSearchPage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -26,10 +22,9 @@ public class TestExample extends TestFixtures {
 
     @Test
     void shouldSearchWiki() {
-        page.navigate("https://www.wikipedia.org/");
-        page.locator("input[name=\"search\"]").click();
-        page.locator("input[name=\"search\"]").fill("playwright");
-        page.locator("input[name=\"search\"]").press("Enter");
+        WikiSearchPage wikiSearchPage = new WikiSearchPage(page);
+        wikiSearchPage.navigate();
+        wikiSearchPage.search("playwright");
         assertEquals("https://en.wikipedia.org/wiki/Playwright", page.url());
     }
 }

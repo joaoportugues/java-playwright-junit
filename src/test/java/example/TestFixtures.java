@@ -1,7 +1,13 @@
 package example;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.microsoft.playwright.*;
 import org.junit.jupiter.api.*;
+
+import javax.naming.Context;
 
 
 // Subclasses will inherit PER_CLASS behavior.
@@ -12,9 +18,14 @@ class TestFixtures {
     Browser browser;
     BrowserContext context;
     Page page;
+    static ExtentReports extent;
 
     @BeforeAll
     void launchBrowser() {
+        extent = new ExtentReports();
+        ExtentSparkReporter spark = new ExtentSparkReporter("target/Spark.html");
+        extent.attachReporter(spark);
+
         playwright = Playwright.create();
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
                 .setHeadless(false)
@@ -23,6 +34,8 @@ class TestFixtures {
 
     @AfterAll
     void closeBrowser() {
+        extent.flush();
+
         playwright.close();
     }
 
@@ -34,6 +47,9 @@ class TestFixtures {
 
     @AfterEach
     void closeContext() {
+        extent.createTest("MyFirstTest")
+                .log(Status.PASS, "This is a logging event for MyFirstTest, and it passed!");
+
         context.close();
     }
 }
