@@ -1,5 +1,6 @@
 example\TestExample.class
-example\extensions\RunnerExtension.class
 models\WikiSearchPage.class
+example\extensions\RunnerExtension.class
+example\extensions\ExceptionLoggingExtension.class
 example\extensions\TimingExtension.class
 example\TestFixtures.class

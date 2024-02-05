@@ -2,4 +2,5 @@ C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\TestExampl
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\models\WikiSearchPage.java
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\TestFixtures.java
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\extensions\RunnerExtension.java
+C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\extensions\ExceptionLoggingExtension.java
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\extensions\TimingExtension.java

@@ -1,5 +1,6 @@
 package example;
 
+import example.extensions.ExceptionLoggingExtension;
 import example.extensions.RunnerExtension;
 import example.extensions.TimingExtension;
 import org.junit.jupiter.api.*;
@@ -11,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(RunnerExtension.class)
 @ExtendWith(TimingExtension.class)
+@ExtendWith({ExceptionLoggingExtension.class})
 public class TestExample extends TestFixtures {
 /*    @Test
     void shouldClickButton() {
@@ -28,6 +30,7 @@ public class TestExample extends TestFixtures {
 
     @Test
     @DisplayName("Test Wikipedia")
+    @Order(1)
     void shouldSearchWiki() {
         WikiSearchPage wikiSearchPage = new WikiSearchPage(page);
         wikiSearchPage.navigate();
@@ -37,6 +40,7 @@ public class TestExample extends TestFixtures {
 
     @Test
     @DisplayName("Test Wikipedia Fail")
+    @Order(2)
     void shouldSearchWikiFail() {
         WikiSearchPage wikiSearchPage = new WikiSearchPage(page);
         wikiSearchPage.navigate();
