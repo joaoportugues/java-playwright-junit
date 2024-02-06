@@ -9,15 +9,21 @@ public class RunnerExtension implements AfterTestExecutionCallback {
 
     @Override
     public void afterTestExecution(ExtensionContext context) throws Exception {
-        testResult = context.getExecutionException().isEmpty();
-        testName = context.getDisplayName();
+        synchronized (RunnerExtension.class) {
+            testResult = context.getExecutionException().isEmpty();
+            testName = context.getDisplayName();
+        }
     }
 
     public static Boolean getTestResult() {
-        return testResult;
+        synchronized (RunnerExtension.class) {
+            return testResult;
+        }
     }
 
     public static String getTestName() {
-        return testName;
+        synchronized (RunnerExtension.class) {
+            return testName;
+        }
     }
 }

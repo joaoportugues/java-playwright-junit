@@ -8,6 +8,8 @@ import example.engine.extensions.TimingExtension;
 import org.junit.jupiter.api.*;
 import example.models.WikiSearchPage;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

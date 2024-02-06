@@ -1,20 +1,13 @@
 package example.engine;
 
 import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.microsoft.playwright.*;
 import example.engine.extensions.ExceptionLoggingExtension;
-import example.global.GlobalSetupExtension;
 import org.junit.jupiter.api.*;
 import example.engine.extensions.RunnerExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 import example.global.ReportingManager;
 import org.junit.jupiter.api.extension.RegisterExtension;
-
-import java.util.Base64;
 
 import static java.util.Base64.getEncoder;
 
@@ -27,11 +20,6 @@ public class TestFixtures {
     Browser browser;
     BrowserContext context;
     Page page;
-    static ExtentReports extentReport;
-
-    @RegisterExtension
-    static GlobalSetupExtension globalSetupExtension = new GlobalSetupExtension();
-
     @BeforeAll
     void launchBrowser() {
 
@@ -58,12 +46,12 @@ public class TestFixtures {
 
     @AfterEach
     void closeContext() {
-        boolean testResult = RunnerExtension.getTestResult();
-        String testName = RunnerExtension.getTestName();
-        String screenshotBase64 = testResult ? null : getEncoder().encodeToString(page.screenshot());
-        Throwable exception = testResult ? null : ExceptionLoggingExtension.getException();
-
-        ReportingManager.logTestStatus(ReportingManager.createTest(testName), testResult, screenshotBase64, exception);
+//        boolean testResult = RunnerExtension.getTestResult();
+//        String testName = RunnerExtension.getTestName();
+//        String screenshotBase64 = testResult ? null : getEncoder().encodeToString(page.screenshot());
+//        Throwable exception = testResult ? null : ExceptionLoggingExtension.getException();
+//
+//        ReportingManager.logTestStatus(ReportingManager.createTest(testName), testResult, screenshotBase64, exception);
 
         context.close();
     }

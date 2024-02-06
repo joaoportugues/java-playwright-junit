@@ -2,10 +2,8 @@ example\tests\search\SearchTest.class
 example\global\ReportingManager.class
 example\tests\login\LoginTests.class
 example\engine\extensions\ExceptionLoggingExtension.class
-example\suites\Suite.class
-example\engine\extensions\TimingExtension.class
-example\global\GlobalSetupExtension.class
 example\engine\extensions\RunnerExtension.class
 example\engine\TestFixtures.class
 example\global\BeforeAfterSuiteListener.class
 example\models\WikiSearchPage.class
+example\engine\extensions\TimingExtension.class

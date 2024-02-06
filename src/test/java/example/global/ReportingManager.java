@@ -27,7 +27,7 @@ public class ReportingManager {
         } else {
             test.fail("Test failed", MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotBase64).build());
             if (exception != null) {
-                test.log(Status.FAIL, exception.getMessage());
+                test.log(Status.INFO, exception);
             }
         }
     }
