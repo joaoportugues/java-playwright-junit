@@ -1,4 +1,4 @@
-package example.extensions;
+package example.engine.extensions;
 
 import java.lang.reflect.Method;
 import java.util.logging.Logger;

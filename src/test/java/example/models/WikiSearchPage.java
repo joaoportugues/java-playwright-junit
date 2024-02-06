@@ -1,4 +1,4 @@
-package models;
+package example.models;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;

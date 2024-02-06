@@ -1,4 +1,4 @@
-package example;
+package example.engine;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -6,18 +6,22 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.microsoft.playwright.*;
-import example.extensions.ExceptionLoggingExtension;
+import example.engine.extensions.ExceptionLoggingExtension;
+import example.global.GlobalSetupExtension;
 import org.junit.jupiter.api.*;
-import example.extensions.RunnerExtension;
+import example.engine.extensions.RunnerExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.ExtensionContext;
+import example.global.ReportingManager;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 import java.util.Base64;
+
+import static java.util.Base64.getEncoder;
 
 // Subclasses will inherit PER_CLASS behavior.
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(RunnerExtension.class)
-class TestFixtures {
+public class TestFixtures {
     // Shared between all tests in the class.
     Playwright playwright;
     Browser browser;
@@ -25,11 +29,13 @@ class TestFixtures {
     Page page;
     static ExtentReports extentReport;
 
+    @RegisterExtension
+    static GlobalSetupExtension globalSetupExtension = new GlobalSetupExtension();
+
     @BeforeAll
     void launchBrowser() {
-        extentReport = new ExtentReports();
-        ExtentSparkReporter spark = new ExtentSparkReporter("target/Spark.html");
-        extentReport.attachReporter(spark);
+        String className = getClass().getSimpleName(); // Obtain the class name
+        ReportingManager.initializeExtentReport(className);
 
         playwright = Playwright.create();
         browser = playwright.chromium().launch(
@@ -41,31 +47,32 @@ class TestFixtures {
 
     @AfterAll
     void closeBrowser() {
-        extentReport.flush();
+        ReportingManager.flushExtentReport();
 
         playwright.close();
     }
 
     @BeforeEach
     void createContextAndPage() {
-        context = browser.newContext();
+        context = browser.newContext(
+                new Browser.NewContextOptions().setLocale("en-US")
+        );
         page = context.newPage();
     }
 
     @AfterEach
     void closeContext() {
-        ExtentTest test = extentReport.createTest(RunnerExtension.getTestName());
         boolean testResult = RunnerExtension.getTestResult();
+        String testName = RunnerExtension.getTestName();
+        String screenshotBase64 = testResult ? null : getEncoder().encodeToString(page.screenshot());
+        Throwable exception = testResult ? null : ExceptionLoggingExtension.getException();
 
-        test.log(testResult ? Status.PASS : Status.FAIL,
-                testResult ? null : MediaEntityBuilder.createScreenCaptureFromBase64String(
-                        Base64.getEncoder().encodeToString(
-                                page.screenshot())).build());
-
-        if(!testResult) {
-            test.log(Status.FAIL, ExceptionLoggingExtension.getException());
-        }
+        ReportingManager.logTestStatus(ReportingManager.createTest(testName), testResult, screenshotBase64, exception);
 
         context.close();
+    }
+
+    public Page getPage(){
+        return page;
     }
 }
