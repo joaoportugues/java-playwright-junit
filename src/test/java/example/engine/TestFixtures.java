@@ -12,8 +12,8 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import static java.util.Base64.getEncoder;
 
 // Subclasses will inherit PER_CLASS behavior.
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(RunnerExtension.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TestFixtures {
     // Shared between all tests in the class.
     Playwright playwright;
@@ -25,9 +25,9 @@ public class TestFixtures {
 
         playwright = Playwright.create();
         browser = playwright.chromium().launch(
-/*                new BrowserType.LaunchOptions()
+                new BrowserType.LaunchOptions()
                 .setHeadless(false)
-                .setSlowMo(100)*/
+                .setSlowMo(100)
         );
     }
 

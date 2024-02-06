@@ -11,9 +11,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ExtendWith(RunnerExtension.class)
 @ExtendWith(TimingExtension.class)
 @ExtendWith({ExceptionLoggingExtension.class})
+@ExtendWith(RunnerExtension.class)
 public class LogoutTest extends TestFixtures {
     protected Page page;
 

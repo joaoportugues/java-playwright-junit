@@ -14,9 +14,9 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@ExtendWith(RunnerExtension.class)
 @ExtendWith(TimingExtension.class)
 @ExtendWith({ExceptionLoggingExtension.class})
+@ExtendWith(RunnerExtension.class)
 public class SearchTest extends TestFixtures {
     protected Page page;
 
