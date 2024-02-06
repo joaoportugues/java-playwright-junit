@@ -46,12 +46,12 @@ public class TestFixtures {
 
     @AfterEach
     void closeContext() {
-//        boolean testResult = RunnerExtension.getTestResult();
-//        String testName = RunnerExtension.getTestName();
-//        String screenshotBase64 = testResult ? null : getEncoder().encodeToString(page.screenshot());
-//        Throwable exception = testResult ? null : ExceptionLoggingExtension.getException();
-//
-//        ReportingManager.logTestStatus(ReportingManager.createTest(testName), testResult, screenshotBase64, exception);
+        boolean testResult = RunnerExtension.getTestResult();
+        String testName = RunnerExtension.getTestName();
+        String screenshotBase64 = testResult ? null : getEncoder().encodeToString(page.screenshot());
+        Throwable exception = testResult ? null : ExceptionLoggingExtension.getException();
+
+        ReportingManager.logTestStatus(ReportingManager.createTest(testName), testResult, screenshotBase64, exception);
 
         context.close();
     }

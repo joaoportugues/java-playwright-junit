@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: example.tests.search.SearchTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 9.098 s <<< FAILURE! -- in example.tests.search.SearchTest
-example.tests.login.LoginTests.shouldSearchWikiFailTest -- Time elapsed: 1.664 s <<< FAILURE!
+Tests run: 3, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 9.568 s <<< FAILURE! -- in example.tests.search.SearchTest
+example.tests.login.LoginTests.shouldSearchWikiFailTest -- Time elapsed: 2.486 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <https://en.wikipedia.org/wiki/NotPlaywright> but was: <https://en.wikipedia.org/wiki/Playwright>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -19,7 +19,7 @@ org.opentest4j.AssertionFailedError: expected: <https://en.wikipedia.org/wiki/No
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
 
-example.tests.search.SearchTest.shouldSearchWikiFail2Test -- Time elapsed: 1.302 s <<< FAILURE!
+example.tests.search.SearchTest.shouldSearchWikiFail2Test -- Time elapsed: 2.058 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <https://en.wikipedia.org/wiki/NotPlaywright> but was: <https://en.wikipedia.org/wiki/Playwright>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)

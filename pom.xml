@@ -90,7 +90,7 @@
 				<configuration>
 					<properties>
 						<configurationParameters>
-							junit.platform.reporting.open.xml.enabled = false
+							junit.platform.reporting.open.xml.enabled = true
 							junit.platform.reporting.output.dir = target/surefire-reports
 							junit.jupiter.execution.parallel.enabled=true
 							junit.jupiter.execution.parallel.mode.default = concurrent
