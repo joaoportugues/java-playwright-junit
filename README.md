@@ -25,3 +25,6 @@ Thread-safe implementation of PlayWright with Extent Reports with multiple exten
 ```
 ### How to run?
 ```mvn test```
+
+### Architecture
+![junit_playwright_extentReport.PNG](junit_playwright_extentReport.PNG)

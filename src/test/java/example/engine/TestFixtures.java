@@ -31,11 +31,6 @@ public class TestFixtures {
         );
     }
 
-    @AfterAll
-    void closeBrowser() {
-        playwright.close();
-    }
-
     @BeforeEach
     void createContextAndPage(TestInfo testInfo) {
         String className = testInfo.getTestClass().orElseThrow().getSimpleName();
@@ -58,6 +53,12 @@ public class TestFixtures {
         ReportingManager.logTestMethodStatus(ReportingManager.createTestMethodNode(className, methodName), testResult, screenshotBase64, exception);
 
         context.close();
+    }
+
+    @AfterAll
+    void closeBrowser() {
+        browser.close();
+        playwright.close();
     }
 
     public Page getPage(){

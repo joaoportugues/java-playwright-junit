@@ -5,8 +5,6 @@ import org.junit.platform.launcher.TestPlan;
 
 public class BeforeAfterSuiteListener implements TestExecutionListener {
 
-    private static String className;
-
     @Override
     public void testPlanExecutionStarted(TestPlan testPlan) {
         ReportingManager.initializeExtentReport();

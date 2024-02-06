@@ -20,10 +20,4 @@ public class RunnerExtension implements AfterTestExecutionCallback {
             return testResult;
         }
     }
-
-    public static String getTestName() {
-        synchronized (RunnerExtension.class) {
-            return testName;
-        }
-    }
 }
