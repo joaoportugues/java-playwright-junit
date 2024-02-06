@@ -2,9 +2,9 @@ C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\global\Rep
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\engine\TestFixtures.java
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\models\WikiSearchPage.java
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\engine\extensions\TimingExtension.java
-C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\tests\search\TestSearch.java
-C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\tests\TestSuite.java
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\engine\extensions\ExceptionLoggingExtension.java
-C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\tests\login\TestLogin.java
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\engine\extensions\RunnerExtension.java
+C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\tests\login\LoginTests.java
+C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\suites\Suite.java
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\global\GlobalSetupExtension.java
+C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\tests\search\SearchTest.java

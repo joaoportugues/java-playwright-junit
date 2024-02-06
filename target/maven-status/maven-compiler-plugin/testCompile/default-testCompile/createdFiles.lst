@@ -1,10 +1,10 @@
-example\tests\TestSuite.class
+example\tests\search\SearchTest.class
 example\global\ReportingManager.class
-example\tests\login\TestLogin.class
+example\tests\login\LoginTests.class
 example\global\GlobalSetupExtension.class
-example\tests\search\TestSearch.class
 example\engine\extensions\ExceptionLoggingExtension.class
 example\engine\extensions\RunnerExtension.class
 example\engine\TestFixtures.class
 example\models\WikiSearchPage.class
+example\suites\Suite.class
 example\engine\extensions\TimingExtension.class

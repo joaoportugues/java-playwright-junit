@@ -1,22 +1,23 @@
-package example.tests.search;
+package example.tests.login;
 
 import com.microsoft.playwright.Page;
 import example.engine.TestFixtures;
 import example.engine.extensions.ExceptionLoggingExtension;
 import example.engine.extensions.RunnerExtension;
 import example.engine.extensions.TimingExtension;
-import example.global.GlobalSetupExtension;
-import org.junit.jupiter.api.*;
 import example.models.WikiSearchPage;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(RunnerExtension.class)
 @ExtendWith(TimingExtension.class)
 @ExtendWith({ExceptionLoggingExtension.class})
-public class TestSearch extends TestFixtures {
+public class LoginTests extends TestFixtures {
     protected Page page;
 
     @BeforeEach
@@ -38,20 +39,20 @@ public class TestSearch extends TestFixtures {
         assertTrue((Boolean) page.evaluate("() => window['checkbox'].checked"));
     }*/
 
-    @Test
-    @DisplayName("Test Wikipedia2")
+    @DisplayName("Test Wikipedia")
     @Order(1)
-    void shouldSearchWiki2() {
+    @Test
+    void shouldSearchWikiTest() {
         WikiSearchPage wikiSearchPage = new WikiSearchPage(page);
         wikiSearchPage.navigate();
         wikiSearchPage.search("playwright");
         assertEquals("https://en.wikipedia.org/wiki/Playwright", page.url());
     }
 
-    @Test
-    @DisplayName("Test Wikipedia Fail2")
+    @DisplayName("Test Wikipedia Fail")
     @Order(2)
-    void shouldSearchWikiFail2() {
+    @Test
+    void shouldSearchWikiFailTest() {
         WikiSearchPage wikiSearchPage = new WikiSearchPage(page);
         wikiSearchPage.navigate();
         wikiSearchPage.search("playwright");
