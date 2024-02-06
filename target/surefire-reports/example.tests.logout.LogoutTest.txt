@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: example.tests.search.SearchTest
+Test set: example.tests.logout.LogoutTest
 -------------------------------------------------------------------------------
-Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.00 s -- in example.tests.search.SearchTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 9.044 s -- in example.tests.logout.LogoutTest

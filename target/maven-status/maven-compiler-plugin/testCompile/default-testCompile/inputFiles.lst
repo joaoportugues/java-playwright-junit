@@ -4,6 +4,7 @@ C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\models\Wik
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\engine\extensions\TimingExtension.java
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\global\BeforeAfterSuiteListener.java
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\engine\extensions\ExceptionLoggingExtension.java
+C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\tests\logout\LogoutTest.java
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\engine\extensions\RunnerExtension.java
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\tests\login\LoginTests.java
 C:\Users\qleap\automation\java-playwright-junit\src\test\java\example\suites\Suite.java

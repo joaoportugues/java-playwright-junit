@@ -37,7 +37,10 @@ public class TestFixtures {
     }
 
     @BeforeEach
-    void createContextAndPage() {
+    void createContextAndPage(TestInfo testInfo) {
+        String className = testInfo.getTestClass().orElseThrow().getSimpleName();
+        ReportingManager.getOrCreateTestClassNode(className);
+
         context = browser.newContext(
                 new Browser.NewContextOptions().setLocale("en-US")
         );
@@ -45,13 +48,14 @@ public class TestFixtures {
     }
 
     @AfterEach
-    void closeContext() {
+    void closeContext(TestInfo testInfo) {
+        String className = testInfo.getTestClass().orElseThrow().getSimpleName();
+        String methodName = testInfo.getDisplayName();
         boolean testResult = RunnerExtension.getTestResult();
-        String testName = RunnerExtension.getTestName();
         String screenshotBase64 = testResult ? null : getEncoder().encodeToString(page.screenshot());
         Throwable exception = testResult ? null : ExceptionLoggingExtension.getException();
 
-        ReportingManager.logTestStatus(ReportingManager.createTest(testName), testResult, screenshotBase64, exception);
+        ReportingManager.logTestMethodStatus(ReportingManager.createTestMethodNode(className, methodName), testResult, screenshotBase64, exception);
 
         context.close();
     }

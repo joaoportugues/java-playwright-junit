@@ -1,5 +1,6 @@
 example\tests\search\SearchTest.class
 example\global\ReportingManager.class
+example\tests\logout\LogoutTest.class
 example\tests\login\LoginTests.class
 example\engine\extensions\ExceptionLoggingExtension.class
 example\engine\extensions\RunnerExtension.class

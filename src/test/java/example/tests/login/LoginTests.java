@@ -44,7 +44,7 @@ public class LoginTests extends TestFixtures {
     @DisplayName("Test Wikipedia")
     @Order(1)
     @Test
-    void shouldSearchWikiTest() {
+    void shouldSearchWiki() {
         WikiSearchPage wikiSearchPage = new WikiSearchPage(page);
         wikiSearchPage.navigate();
         wikiSearchPage.search("playwright");
@@ -54,7 +54,7 @@ public class LoginTests extends TestFixtures {
     @DisplayName("Test Wikipedia Fail")
     @Order(2)
     @Test
-    void shouldSearchWikiFailTest() {
+    void shouldSearchWikiFail() {
         WikiSearchPage wikiSearchPage = new WikiSearchPage(page);
         wikiSearchPage.navigate();
         wikiSearchPage.search("playwright");

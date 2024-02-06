@@ -6,33 +6,58 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ReportingManager {
     private static ExtentReports extentReport;
+    private static Map<String, ExtentTest> testClassNodes = new HashMap<>();
+    private static final Object lock = new Object();
 
-    public static void initializeExtentReport(String className) {
-        extentReport = new ExtentReports();
-        ExtentSparkReporter spark = new ExtentSparkReporter("target/"+className+".html");
-        extentReport.attachReporter(spark);
+    public static void initializeExtentReport() {
+        synchronized (lock) {
+            if (extentReport == null) {
+                extentReport = new ExtentReports();
+                ExtentSparkReporter spark = new ExtentSparkReporter("target/ExtentReport.html");
+                extentReport.attachReporter(spark);
+            }
+        }
     }
 
-    public static ExtentTest createTest(String testName) {
-        return extentReport.createTest(testName);
+    public static ExtentTest getOrCreateTestClassNode(String className) {
+        synchronized (lock) {
+            return testClassNodes.computeIfAbsent(className, extentReport::createTest);
+        }
     }
 
-    public static void logTestStatus(ExtentTest test, boolean testResult, String screenshotBase64, Throwable exception) {
-        if (testResult) {
-            test.pass("Test passed");
-        } else {
-            test.fail("Test failed", MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotBase64).build());
-            if (exception != null) {
-                test.log(Status.INFO, exception);
+    public static ExtentTest createTestMethodNode(String className, String methodName) {
+        synchronized (lock) {
+            ExtentTest classNode = testClassNodes.get(className);
+            if (classNode == null) {
+                throw new IllegalStateException("Test class node not found: " + className);
+            }
+            return classNode.createNode(methodName);
+        }
+    }
+
+    public static void logTestMethodStatus(ExtentTest methodNode, boolean testResult, String screenshotBase64, Throwable exception) {
+        synchronized (lock) {
+            if (testResult) {
+                methodNode.pass("Test passed");
+            } else {
+                methodNode.fail("Test failed", MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotBase64).build());
+                if (exception != null) {
+                    methodNode.log(Status.FAIL, exception);
+                }
             }
         }
     }
 
     public static void flushExtentReport() {
-        extentReport.flush();
+        synchronized (lock) {
+            if (extentReport != null) {
+                extentReport.flush();
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@ public class BeforeAfterSuiteListener implements TestExecutionListener {
 
     @Override
     public void testPlanExecutionStarted(TestPlan testPlan) {
-        ReportingManager.initializeExtentReport("testReport.html");
+        ReportingManager.initializeExtentReport();
         System.out.println("Extent report initialized");
     }
 
