@@ -1,4 +1,17 @@
 -------------------------------------------------------------------------------
 Test set: example.tests.search.SearchTest
 -------------------------------------------------------------------------------
-Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.00 s -- in example.tests.search.SearchTest
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 4.000 s <<< FAILURE! -- in example.tests.search.SearchTest
+example.tests.search.SearchTest.shouldSearchWikiFail2 -- Time elapsed: 1.748 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <https://en.wikipedia.org/wiki/NotPlaywright> but was: <https://en.wikipedia.org/wiki/Playwright>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+	at example.tests.search.SearchTest.shouldSearchWikiFail2(SearchTest.java:59)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

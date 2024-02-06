@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: example.tests.logout.LogoutTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 9.044 s -- in example.tests.logout.LogoutTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 2.494 s -- in example.tests.logout.LogoutTest
