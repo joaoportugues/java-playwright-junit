@@ -20,14 +20,24 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
+		<playwright.version>1.41.0</playwright.version>
+		<extent-reports.version>5.1.1</extent-reports.version>
 		<slf4j-simple.version>2.0.2</slf4j-simple.version>
+		<junit-jupiter.version>5.10.2</junit-jupiter.version>
+		<junit-platform.version>1.10.2</junit-platform.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.microsoft.playwright</groupId>
 			<artifactId>playwright</artifactId>
-			<version>1.41.0</version>
+			<version>${playwright.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>${extent-reports.version}</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
 		<dependency>
@@ -39,29 +49,27 @@
 		<dependency>
     			<groupId>org.junit.jupiter</groupId>
     			<artifactId>junit-jupiter-api</artifactId>
-    			<version>5.10.2</version>
+    			<version>${junit-jupiter.version}</version>
     			<scope>test</scope>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite-api -->
 		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-suite-api</artifactId>
-			<version>1.10.2</version>
+			<version>${junit-platform.version}</version>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
-		<dependency>
-			<groupId>com.aventstack</groupId>
-			<artifactId>extentreports</artifactId>
-			<version>5.1.1</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-reporting</artifactId>
-			<version>1.10.2</version>
+			<version>${junit-platform.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite-engine -->
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-suite-engine</artifactId>
+			<version>${junit-platform.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
@@ -71,16 +79,6 @@
 			<version>3.2.5</version>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite-engine -->
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-suite-engine</artifactId>
-			<version>1.10.2</version>
-			<scope>test</scope>
-		</dependency>
-
-
 	</dependencies>
 	<build>
 		<plugins>

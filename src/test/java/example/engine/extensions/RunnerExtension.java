@@ -5,13 +5,11 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 
 public class RunnerExtension implements AfterTestExecutionCallback {
     private static Boolean testResult;
-    private static String testName;
 
     @Override
     public void afterTestExecution(ExtensionContext context) throws Exception {
         synchronized (RunnerExtension.class) {
             testResult = context.getExecutionException().isEmpty();
-            testName = context.getDisplayName();
         }
     }
 

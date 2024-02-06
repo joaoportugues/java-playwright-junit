@@ -1,19 +1,13 @@
 package example.engine;
 
-import com.aventstack.extentreports.ExtentReports;
 import com.microsoft.playwright.*;
 import example.engine.extensions.ExceptionLoggingExtension;
 import org.junit.jupiter.api.*;
 import example.engine.extensions.RunnerExtension;
-import org.junit.jupiter.api.extension.ExtendWith;
 import example.global.ReportingManager;
-import org.junit.jupiter.api.extension.RegisterExtension;
-
 import static java.util.Base64.getEncoder;
 
-// Subclasses will inherit PER_CLASS behavior.
-@ExtendWith(RunnerExtension.class)
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS) // Subclasses will inherit PER_CLASS behavior.
 public class TestFixtures {
     // Shared between all tests in the class.
     Playwright playwright;
@@ -22,12 +16,11 @@ public class TestFixtures {
     Page page;
     @BeforeAll
     void launchBrowser() {
-
         playwright = Playwright.create();
         browser = playwright.chromium().launch(
-                new BrowserType.LaunchOptions()
+/*                new BrowserType.LaunchOptions()
                 .setHeadless(false)
-                .setSlowMo(100)
+                .setSlowMo(100)*/
         );
     }
 

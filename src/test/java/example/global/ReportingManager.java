@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class ReportingManager {
     private static ExtentReports extentReport;
-    private static Map<String, ExtentTest> testClassNodes = new HashMap<>();
+    private static final Map<String, ExtentTest> testClassNodes = new HashMap<>();
     private static final Object lock = new Object();
 
     public static void initializeExtentReport() {
@@ -24,9 +24,9 @@ public class ReportingManager {
         }
     }
 
-    public static ExtentTest getOrCreateTestClassNode(String className) {
+    public static void getOrCreateTestClassNode(String className) {
         synchronized (lock) {
-            return testClassNodes.computeIfAbsent(className, extentReport::createTest);
+            testClassNodes.computeIfAbsent(className, extentReport::createTest);
         }
     }
 

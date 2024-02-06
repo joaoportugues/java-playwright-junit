@@ -4,13 +4,11 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 
 public class ExceptionLoggingExtension implements AfterTestExecutionCallback {
 
-    private static ThreadLocal<Throwable> exception = new ThreadLocal<>();
+    private static final ThreadLocal<Throwable> exception = new ThreadLocal<>();
 
     @Override
     public void afterTestExecution(ExtensionContext context) throws Exception {
-        context.getExecutionException().ifPresent(ex -> {
-            exception.set(ex);
-        });
+        context.getExecutionException().ifPresent(exception::set);
     }
 
     public static Throwable getException() {

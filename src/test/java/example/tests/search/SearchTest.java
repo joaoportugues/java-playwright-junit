@@ -8,11 +8,7 @@ import example.engine.extensions.TimingExtension;
 import org.junit.jupiter.api.*;
 import example.models.WikiSearchPage;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.parallel.Execution;
-import org.junit.jupiter.api.parallel.ExecutionMode;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(TimingExtension.class)
 @ExtendWith({ExceptionLoggingExtension.class})
@@ -24,20 +20,6 @@ public class SearchTest extends TestFixtures {
     void beforeEach() {
         page = getPage();
     }
-
-/*    @Test
-    void shouldClickButton() {
-        page.navigate("data:text/html,<script>var result;</script><button onclick='result=\"Clicked\"'>Go</button>");
-        page.locator("button").click();
-        assertEquals("Clicked", page.evaluate("result"));
-    }
-
-    @Test
-    void shouldCheckTheBox() {
-        page.setContent("<input id='checkbox' type='checkbox'></input>");
-        page.locator("input").check();
-        assertTrue((Boolean) page.evaluate("() => window['checkbox'].checked"));
-    }*/
 
     @DisplayName("Test Wikipedia2")
     @Order(1)
