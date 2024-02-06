@@ -16,6 +16,9 @@ public class TestFixtures {
     Page page;
     @BeforeAll
     void launchBrowser() {
+        // getting parameter passed in -Dbrowser
+        System.out.println(System.getProperty("browser"));
+
         playwright = Playwright.create();
         browser = playwright.chromium().launch(
 /*                new BrowserType.LaunchOptions()
