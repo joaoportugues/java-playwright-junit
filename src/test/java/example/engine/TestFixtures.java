@@ -34,8 +34,6 @@ public class TestFixtures {
 
     @BeforeAll
     void launchBrowser() {
-        String className = getClass().getSimpleName(); // Obtain the class name
-        ReportingManager.initializeExtentReport(className);
 
         playwright = Playwright.create();
         browser = playwright.chromium().launch(
@@ -47,8 +45,6 @@ public class TestFixtures {
 
     @AfterAll
     void closeBrowser() {
-        ReportingManager.flushExtentReport();
-
         playwright.close();
     }
 

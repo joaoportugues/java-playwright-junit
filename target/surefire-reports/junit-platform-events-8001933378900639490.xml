@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<e:events xmlns="https://schemas.opentest4j.org/reporting/core/0.1.0" xmlns:e="https://schemas.opentest4j.org/reporting/events/0.1.0" xmlns:java="https://schemas.opentest4j.org/reporting/java/0.1.0" xmlns:junit="https://schemas.junit.org/open-test-reporting" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://schemas.junit.org/open-test-reporting https://junit.org/junit5/schemas/open-test-reporting/junit-1.9.xsd">
+<infrastructure><hostName>DESKTOP-MPRRPEK</hostName><userName>qleap</userName><operatingSystem>Windows 10</operatingSystem><cpuCores>4</cpuCores><java:javaVersion>21</java:javaVersion><java:fileEncoding>UTF-8</java:fileEncoding><java:heapSize max="2059403264"></java:heapSize></infrastructure>
+<e:started id="1" name="JUnit Platform Suite" time="2024-02-06T12:43:51.463804600Z"><metadata><junit:uniqueId>[engine:junit-platform-suite]</junit:uniqueId><junit:legacyReportingName>JUnit Platform Suite</junit:legacyReportingName><junit:type>CONTAINER</junit:type></metadata></e:started>
+<e:finished id="1" time="2024-02-06T12:43:51.484752100Z"><result status="SUCCESSFUL"></result></e:finished>
+<e:started id="2" name="JUnit Jupiter" time="2024-02-06T12:43:51.526650700Z"><metadata><junit:uniqueId>[engine:junit-jupiter]</junit:uniqueId><junit:legacyReportingName>JUnit Jupiter</junit:legacyReportingName><junit:type>CONTAINER</junit:type></metadata></e:started>
+<e:started id="3" name="LoginTests" parentId="2" time="2024-02-06T12:43:51.563537700Z"><metadata><junit:uniqueId>[engine:junit-jupiter]/[class:example.tests.login.LoginTests]</junit:uniqueId><junit:legacyReportingName>example.tests.login.LoginTests</junit:legacyReportingName><junit:type>CONTAINER</junit:type></metadata><sources><java:classSource className="example.tests.login.LoginTests"></java:classSource></sources></e:started>
+<e:started id="4" name="Test Wikipedia Fail" parentId="3" time="2024-02-06T12:43:56.703238600Z"><metadata><junit:uniqueId>[engine:junit-jupiter]/[class:example.tests.login.LoginTests]/[method:shouldSearchWikiFailTest()]</junit:uniqueId><junit:legacyReportingName>shouldSearchWikiFailTest()</junit:legacyReportingName><junit:type>TEST</junit:type></metadata><sources><java:methodSource className="example.tests.login.LoginTests" methodName="shouldSearchWikiFailTest" methodParameterTypes=""></java:methodSource></sources></e:started>
+<e:finished id="4" time="2024-02-06T12:43:58.670048300Z"><result status="FAILED"><java:throwable assertionError="true" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <https://en.wikipedia.org/wiki/NotPlaywright> but was: <https://en.wikipedia.org/wiki/Playwright>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+	at example.tests.login.LoginTests.shouldSearchWikiFailTest(LoginTests.java:59)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></java:throwable></result></e:finished>
+<e:started id="5" name="Test Wikipedia" parentId="3" time="2024-02-06T12:43:58.675035300Z"><metadata><junit:uniqueId>[engine:junit-jupiter]/[class:example.tests.login.LoginTests]/[method:shouldSearchWikiTest()]</junit:uniqueId><junit:legacyReportingName>shouldSearchWikiTest()</junit:legacyReportingName><junit:type>TEST</junit:type></metadata><sources><java:methodSource className="example.tests.login.LoginTests" methodName="shouldSearchWikiTest" methodParameterTypes=""></java:methodSource></sources></e:started>
+<e:finished id="5" time="2024-02-06T12:43:59.813992900Z"><result status="SUCCESSFUL"></result></e:finished>
+<e:finished id="3" time="2024-02-06T12:43:59.921143600Z"><result status="SUCCESSFUL"></result></e:finished>
+<e:started id="6" name="SearchTest" parentId="2" time="2024-02-06T12:43:59.937098800Z"><metadata><junit:uniqueId>[engine:junit-jupiter]/[class:example.tests.search.SearchTest]</junit:uniqueId><junit:legacyReportingName>example.tests.search.SearchTest</junit:legacyReportingName><junit:type>CONTAINER</junit:type></metadata><sources><java:classSource className="example.tests.search.SearchTest"></java:classSource></sources></e:started>
+<e:started id="7" name="Test Wikipedia2" parentId="6" time="2024-02-06T12:44:01.105469Z"><metadata><junit:uniqueId>[engine:junit-jupiter]/[class:example.tests.search.SearchTest]/[method:shouldSearchWiki2Test()]</junit:uniqueId><junit:legacyReportingName>shouldSearchWiki2Test()</junit:legacyReportingName><junit:type>TEST</junit:type></metadata><sources><java:methodSource className="example.tests.search.SearchTest" methodName="shouldSearchWiki2Test" methodParameterTypes=""></java:methodSource></sources></e:started>
+<e:finished id="7" time="2024-02-06T12:44:02.356379800Z"><result status="SUCCESSFUL"></result></e:finished>
+<e:started id="8" name="Test Wikipedia Fail2" parentId="6" time="2024-02-06T12:44:02.357378600Z"><metadata><junit:uniqueId>[engine:junit-jupiter]/[class:example.tests.search.SearchTest]/[method:shouldSearchWikiFail2Test()]</junit:uniqueId><junit:legacyReportingName>shouldSearchWikiFail2Test()</junit:legacyReportingName><junit:type>TEST</junit:type></metadata><sources><java:methodSource className="example.tests.search.SearchTest" methodName="shouldSearchWikiFail2Test" methodParameterTypes=""></java:methodSource></sources></e:started>
+<e:finished id="8" time="2024-02-06T12:44:04.157933600Z"><result status="FAILED"><java:throwable assertionError="true" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <https://en.wikipedia.org/wiki/NotPlaywright> but was: <https://en.wikipedia.org/wiki/Playwright>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+	at example.tests.search.SearchTest.shouldSearchWikiFail2Test(SearchTest.java:57)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></java:throwable></result></e:finished>
+<e:finished id="6" time="2024-02-06T12:44:04.239714200Z"><result status="SUCCESSFUL"></result></e:finished>
+<e:finished id="2" time="2024-02-06T12:44:04.246696500Z"><result status="SUCCESSFUL"></result></e:finished>
+</e:events>
