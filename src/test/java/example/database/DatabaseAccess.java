@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DatabaseAccess {
-    private static final String PROPERTIES_FILE = "database.properties";
+    private static final String PROPERTIES_FILE = "src/test/resources/database.properties";
     private static Connection connection;
 
     static {
