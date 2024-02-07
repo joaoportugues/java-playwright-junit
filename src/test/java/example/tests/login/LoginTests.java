@@ -1,6 +1,7 @@
 package example.tests.login;
 
 import com.microsoft.playwright.Page;
+import example.database.DatabaseAccess;
 import example.engine.TestFixtures;
 import example.engine.extensions.ExceptionLoggingExtension;
 import example.engine.extensions.RunnerExtension;
@@ -11,6 +12,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.sql.SQLException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(TimingExtension.class)
@@ -37,10 +42,14 @@ public class LoginTests extends TestFixtures {
     @DisplayName("Test Wikipedia Fail")
     @Order(2)
     @Test
-    void shouldSearchWikiFail() {
+    void shouldSearchWikiFail() throws SQLException {
+        String email = "test";
+
         WikiSearchPage wikiSearchPage = new WikiSearchPage(page);
         wikiSearchPage.navigate();
         wikiSearchPage.search("playwright");
+        int token = DatabaseAccess.getCountFromTable("users");
+        System.out.println(token);
         assertEquals("https://en.wikipedia.org/wiki/NotPlaywright", page.url());
     }
 }

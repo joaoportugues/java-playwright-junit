@@ -6,6 +6,7 @@ import org.junit.jupiter.api.*;
 import example.engine.extensions.RunnerExtension;
 import example.global.ReportingManager;
 import static java.util.Base64.getEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // Subclasses will inherit PER_CLASS behavior.
 public class TestFixtures {
@@ -17,7 +18,7 @@ public class TestFixtures {
     @BeforeAll
     void launchBrowser() {
         // getting parameter passed in -Dbrowser
-        System.out.println(System.getProperty("browser"));
+        //System.out.println(System.getProperty("browser"));
 
         playwright = Playwright.create();
         browser = playwright.chromium().launch(
