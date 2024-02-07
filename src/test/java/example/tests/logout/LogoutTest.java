@@ -5,7 +5,7 @@ import example.engine.TestFixtures;
 import example.engine.extensions.ExceptionLoggingExtension;
 import example.engine.extensions.RunnerExtension;
 import example.engine.extensions.TimingExtension;
-import example.models.WikiSearchPage;
+import example.pageModels.WikiSearchPage;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import static org.junit.jupiter.api.Assertions.assertEquals;

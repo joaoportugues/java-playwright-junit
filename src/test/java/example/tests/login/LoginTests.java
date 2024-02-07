@@ -6,7 +6,7 @@ import example.engine.TestFixtures;
 import example.engine.extensions.ExceptionLoggingExtension;
 import example.engine.extensions.RunnerExtension;
 import example.engine.extensions.TimingExtension;
-import example.models.WikiSearchPage;
+import example.pageModels.WikiSearchPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
