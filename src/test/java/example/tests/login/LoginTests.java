@@ -1,7 +1,7 @@
 package example.tests.login;
 
 import com.microsoft.playwright.Page;
-import example.database.DatabaseAccess;
+import example.database.dao.UserDAO;
 import example.engine.TestFixtures;
 import example.engine.extensions.ExceptionLoggingExtension;
 import example.engine.extensions.RunnerExtension;
@@ -12,7 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.SQLException;
 
@@ -48,8 +47,8 @@ public class LoginTests extends TestFixtures {
         WikiSearchPage wikiSearchPage = new WikiSearchPage(page);
         wikiSearchPage.navigate();
         wikiSearchPage.search("playwright");
-        int token = DatabaseAccess.getCountFromTable("users");
-        System.out.println(token);
+        String userId = UserDAO.getUserById(1).getEmail();
+        System.out.println(userId);
         assertEquals("https://en.wikipedia.org/wiki/NotPlaywright", page.url());
     }
 }
