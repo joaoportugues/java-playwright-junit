@@ -1,2 +1,2 @@
 target
-test/resources/database.properties
+/src/test/resources/db/
