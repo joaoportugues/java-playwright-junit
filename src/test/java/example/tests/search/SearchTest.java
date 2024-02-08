@@ -43,7 +43,7 @@ public class SearchTest extends TestFixtures {
         WikiSearchPageInjection wikiSearchPage = new WikiSearchPageInjection(page);
         wikiSearchPage.navigate("https://www.wikipedia.org/");
         wikiSearchPage.search("input[name=\"search\"]", "playwright");
-        assertEquals("https://en.wikipedia.org/wiki/Playwright", page.url());
+        wikiSearchPage.assertUrl("https://en.wikipedia.org/wiki/Playwright");
     }
 
     @DisplayName("Test Wikipedia Fail2")

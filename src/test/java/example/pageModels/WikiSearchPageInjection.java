@@ -20,4 +20,8 @@ public class WikiSearchPageInjection {
         page.locator(locator).fill(text);
         page.locator(locator).press("Enter");
     }
+
+    public void assertUrl(String url) {
+        assertEquals(url, page.url());
+    }
 }
