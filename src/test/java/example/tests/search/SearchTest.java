@@ -6,6 +6,7 @@ import example.engine.extensions.ExceptionLoggingExtension;
 import example.engine.extensions.RunnerExtension;
 import example.engine.extensions.TimingExtension;
 import example.pageModels.WikiSearchPageChain;
+import example.pageModels.WikiSearchPageInjection;
 import org.junit.jupiter.api.*;
 import example.pageModels.WikiSearchPage;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,7 +23,7 @@ public class SearchTest extends TestFixtures {
         page = getPage();
     }
 
-    @DisplayName("Test Wikipedia2")
+    @DisplayName("Test Wikipedia2 Chaining")
     @Order(1)
     @Test
     void shouldSearchWiki2() {
@@ -34,10 +35,22 @@ public class SearchTest extends TestFixtures {
                 .assertUrl("https://en.wikipedia.org/wiki/Playwright");
     }
 
-    @DisplayName("Test Wikipedia Fail2")
+    @DisplayName("Test Wikipedia2 Dependency Injection")
     @Order(2)
     @Test
+    void shouldSearchWiki2Injection() {
+        // dependency injection
+        WikiSearchPageInjection wikiSearchPage = new WikiSearchPageInjection(page);
+        wikiSearchPage.navigate("https://www.wikipedia.org/");
+        wikiSearchPage.search("input[name=\"search\"]", "playwright");
+        assertEquals("https://en.wikipedia.org/wiki/Playwright", page.url());
+    }
+
+    @DisplayName("Test Wikipedia Fail2")
+    @Order(3)
+    @Test
     void shouldSearchWikiFail2() {
+        // page model
         WikiSearchPage wikiSearchPage = new WikiSearchPage(page);
         wikiSearchPage.navigate();
         wikiSearchPage.search("playwright");
