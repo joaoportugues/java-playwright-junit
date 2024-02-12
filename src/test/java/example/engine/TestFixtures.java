@@ -1,10 +1,18 @@
 package example.engine;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.Markup;
+import com.aventstack.extentreports.model.Test;
 import com.microsoft.playwright.*;
 import example.engine.extensions.ExceptionLoggingExtension;
 import org.junit.jupiter.api.*;
 import example.engine.extensions.RunnerExtension;
 import example.global.ReportingManager;
+
+import java.nio.file.Paths;
+
 import static java.util.Base64.getEncoder;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // Subclasses will inherit PER_CLASS behavior.
@@ -14,6 +22,7 @@ public class TestFixtures {
     Browser browser;
     BrowserContext context;
     Page page;
+
     @BeforeAll
     void launchBrowser() {
         // getting parameter passed in -Dbrowser
@@ -34,6 +43,7 @@ public class TestFixtures {
 
         context = browser.newContext(
                 new Browser.NewContextOptions().setLocale("en-US")
+                        .setRecordVideoDir(Paths.get("target/videos/"))
         );
         page = context.newPage();
     }
@@ -46,9 +56,15 @@ public class TestFixtures {
         String screenshotBase64 = testResult ? null : getEncoder().encodeToString(page.screenshot());
         Throwable exception = testResult ? null : ExceptionLoggingExtension.getException();
 
-        ReportingManager.logTestMethodStatus(ReportingManager.createTestMethodNode(className, methodName), testResult, screenshotBase64, exception);
-
         context.close();
+        if (testResult) {
+            page.video().delete();
+            ReportingManager.logTestMethodStatus(ReportingManager.createTestMethodNode(className, methodName), true, null, null, null);
+
+        } else {
+            ReportingManager.logTestMethodStatus(
+                    ReportingManager.createTestMethodNode(className, methodName), false, screenshotBase64, String.valueOf(page.video().path()), exception);
+        }
     }
 
     @AfterAll
@@ -57,7 +73,7 @@ public class TestFixtures {
         playwright.close();
     }
 
-    public Page getPage(){
+    public Page getPage() {
         return page;
     }
 }

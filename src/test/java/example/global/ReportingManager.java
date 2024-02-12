@@ -4,6 +4,8 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.Markup;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import java.util.HashMap;
@@ -40,12 +42,13 @@ public class ReportingManager {
         }
     }
 
-    public static void logTestMethodStatus(ExtentTest methodNode, boolean testResult, String screenshotBase64, Throwable exception) {
+    public static void logTestMethodStatus(ExtentTest methodNode, boolean testResult, String screenshotBase64, String path, Throwable exception) {
         synchronized (lock) {
             if (testResult) {
                 methodNode.pass("Test passed");
             } else {
                 methodNode.fail("Test failed", MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotBase64).build());
+                methodNode.info("<a href='" + path + "' target='_blank'>Video</a>");
                 if (exception != null) {
                     methodNode.log(Status.FAIL, exception);
                 }
