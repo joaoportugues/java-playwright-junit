@@ -48,7 +48,10 @@ public class ReportingManager {
                 methodNode.pass("Test passed");
             } else {
                 methodNode.fail("Test failed", MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotBase64).build());
-                methodNode.info("<a href='" + path + "' target='_blank'>Video</a>");
+
+                String relativePath = path.substring(path.lastIndexOf("videos"));
+
+                methodNode.info("<a href='" + relativePath + "' target='_blank'>Video</a>");
                 if (exception != null) {
                     methodNode.log(Status.FAIL, exception);
                 }
