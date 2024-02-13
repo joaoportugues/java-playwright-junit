@@ -9,5 +9,5 @@ public interface ReportManager {
 
     ExtentTest createTestMethodNode(String className, String methodName);
 
-    void logTestMethodStatus(String className, String methodName, boolean testResult, String screenshotBase64, String path, Throwable exception);
+    void logTestMethodStatus(String className, String methodName, boolean testResult, String screenshotBase64, String videoPath, Throwable exception);
 }
