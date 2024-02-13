@@ -42,7 +42,7 @@ public class ReportingManager implements ReportManager {
         }
     }
 
-    public void logTestMethodStatus(String className, String methodName, boolean testResult, String screenshotBase64, String path, Throwable exception) {
+    public void logTestMethodStatus(String className, String methodName, boolean testResult, String screenshotBase64, String videoPath, Throwable exception) {
         synchronized (lock) {
             ExtentTest methodNode = createTestMethodNode(className, methodName);
             if (testResult) {
@@ -50,7 +50,7 @@ public class ReportingManager implements ReportManager {
             } else {
                 methodNode.fail("Test failed", MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotBase64).build());
 
-                String relativePath = path.substring(path.lastIndexOf("videos"));
+                String relativePath = videoPath.substring(videoPath.lastIndexOf("videos"));
 
                 methodNode.info("<a href='" + relativePath + "' target='_blank'>Video</a>");
                 if (exception != null) {
