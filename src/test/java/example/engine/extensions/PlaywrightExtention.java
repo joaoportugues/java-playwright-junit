@@ -23,6 +23,9 @@ public class PlaywrightExtention implements
     protected Browser browser;
     protected BrowserContext browserContext;
     protected Page page;
+
+    private final ReportingManager reportingManager = new ReportingManager();
+
     @Override
     public void beforeAll(ExtensionContext context) {
         // getting parameter passed in -Dbrowser
@@ -39,7 +42,7 @@ public class PlaywrightExtention implements
     @Override
     public void beforeEach(ExtensionContext context) {
         String className = context.getTestClass().orElseThrow().getSimpleName();
-        ReportingManager.getOrCreateTestClassNode(className);
+        reportingManager.getOrCreateTestClassNode(className);
 
         browserContext = browser.newContext(
                 new Browser.NewContextOptions().setLocale("en-US")
@@ -59,11 +62,11 @@ public class PlaywrightExtention implements
         browserContext.close();
         if (testResult) {
             page.video().delete();
-            ReportingManager.logTestMethodStatus(ReportingManager.createTestMethodNode(className, methodName), true, null, null, null);
-
+            reportingManager.logTestMethodStatus(
+                    className, methodName, true, null, null, null);
         } else {
-            ReportingManager.logTestMethodStatus(
-                    ReportingManager.createTestMethodNode(className, methodName), false, screenshotBase64, String.valueOf(page.video().path()), exception);
+            reportingManager.logTestMethodStatus(
+                    className, methodName, false, screenshotBase64, String.valueOf(page.video().path()), exception);
         }
     }
 

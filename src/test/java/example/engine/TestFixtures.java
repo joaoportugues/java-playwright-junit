@@ -24,7 +24,6 @@ public class TestFixtures {
     final static PlaywrightExtention PLAYWRIGHT_EXTENTION = new PlaywrightExtention();
 
 
-
     protected Page getPage() {
         return PLAYWRIGHT_EXTENTION.getPage();
     }

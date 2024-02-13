@@ -11,14 +11,14 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReportingManager {
+public class ReportingManager implements ReportManager {
     private static ExtentReports extentReport;
     private static final Map<String, ExtentTest> testClassNodes = new HashMap<>();
     private static final Object lock = new Object();
 
-    public static void initializeExtentReport() {
-        synchronized (lock) {
-            if (extentReport == null) {
+    public void initializeExtentReport() {
+        if (extentReport == null) {
+            synchronized (lock) {
                 extentReport = new ExtentReports();
                 ExtentSparkReporter spark = new ExtentSparkReporter("target/ExtentReport.html");
                 extentReport.attachReporter(spark);
@@ -26,13 +26,13 @@ public class ReportingManager {
         }
     }
 
-    public static void getOrCreateTestClassNode(String className) {
+    public void getOrCreateTestClassNode(String className) {
         synchronized (lock) {
             testClassNodes.computeIfAbsent(className, extentReport::createTest);
         }
     }
 
-    public static ExtentTest createTestMethodNode(String className, String methodName) {
+    public ExtentTest createTestMethodNode(String className, String methodName) {
         synchronized (lock) {
             ExtentTest classNode = testClassNodes.get(className);
             if (classNode == null) {
@@ -42,8 +42,9 @@ public class ReportingManager {
         }
     }
 
-    public static void logTestMethodStatus(ExtentTest methodNode, boolean testResult, String screenshotBase64, String path, Throwable exception) {
+    public void logTestMethodStatus(String className, String methodName, boolean testResult, String screenshotBase64, String path, Throwable exception) {
         synchronized (lock) {
+            ExtentTest methodNode = createTestMethodNode(className, methodName);
             if (testResult) {
                 methodNode.pass("Test passed");
             } else {
@@ -59,9 +60,9 @@ public class ReportingManager {
         }
     }
 
-    public static void flushExtentReport() {
-        synchronized (lock) {
-            if (extentReport != null) {
+    public void flushExtentReport() {
+        if (extentReport != null) {
+            synchronized (lock) {
                 extentReport.flush();
             }
         }
