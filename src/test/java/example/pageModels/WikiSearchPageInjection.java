@@ -5,7 +5,7 @@ import com.microsoft.playwright.Page;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class WikiSearchPageInjection {
+public class WikiSearchPageInjection extends BaseLocatorSearch{
     private final Page page;
 
     public WikiSearchPageInjection(Page page) {
@@ -17,7 +17,8 @@ public class WikiSearchPageInjection {
     }
 
     public void search(String locator, String text) {
-        page.locator(locator).fill(text);
+        findElementByDefaultSelectors(page, locator).fill(text);
+        //page.locator(locator).fill(text);
         page.locator(locator).press("Enter");
     }
 
