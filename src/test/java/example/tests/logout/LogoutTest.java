@@ -25,7 +25,7 @@ public class LogoutTest extends TestFixtures {
     @Order(1)
     @Test
     void shouldSearchWiki3() {
-        WikiSearchPage wikiSearchPage = new WikiSearchPage(page);
+        var wikiSearchPage = new WikiSearchPage(page);
         wikiSearchPage.navigate();
         wikiSearchPage.search("playwright");
         assertEquals("https://en.wikipedia.org/wiki/Playwright", page.url());
@@ -36,7 +36,7 @@ public class LogoutTest extends TestFixtures {
     @Test
     @Disabled
     void shouldSearchWikiFail3() {
-        WikiSearchPage wikiSearchPage = new WikiSearchPage(page);
+        var wikiSearchPage = new WikiSearchPage(page);
         wikiSearchPage.navigate();
         wikiSearchPage.search("playwright");
         assertEquals("https://en.wikipedia.org/wiki/NotPlaywright", page.url());

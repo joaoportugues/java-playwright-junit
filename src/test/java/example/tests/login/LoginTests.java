@@ -32,7 +32,7 @@ public class LoginTests extends TestFixtures {
     @Order(1)
     @Test
     void shouldSearchWiki() {
-        WikiSearchPage wikiSearchPage = new WikiSearchPage(page);
+        var wikiSearchPage = new WikiSearchPage(page);
         wikiSearchPage.navigate();
         wikiSearchPage.search("playwright");
         assertEquals("https://en.wikipedia.org/wiki/Playwright", page.url());
@@ -42,12 +42,12 @@ public class LoginTests extends TestFixtures {
     @Order(2)
     @Test
     void shouldSearchWikiFail() throws SQLException {
-        String email = "test";
+        var email = "test";
 
-        WikiSearchPage wikiSearchPage = new WikiSearchPage(page);
+        var wikiSearchPage = new WikiSearchPage(page);
         wikiSearchPage.navigate();
         wikiSearchPage.search("playwright");
-        String userId = UserDAO.getUserById(1).getEmail();
+        var userId = UserDAO.getUserById(1).getEmail();
         System.out.println(userId);
         assertEquals("https://en.wikipedia.org/wiki/NotPlaywright", page.url());
     }

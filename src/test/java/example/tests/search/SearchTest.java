@@ -28,7 +28,7 @@ public class SearchTest extends TestFixtures {
     @Test
     void shouldSearchWiki2() {
         // create a chain instead of usual pom
-        WikiSearchPageChain wikiSearchPage = new WikiSearchPageChain(page);
+        var wikiSearchPage = new WikiSearchPageChain(page);
         wikiSearchPage.navigate()
                 .search("playwright")
                 .pressEnter()
@@ -40,7 +40,7 @@ public class SearchTest extends TestFixtures {
     @Test
     void shouldSearchWiki2Injection() {
         // dependency injection
-        WikiSearchPageInjection wikiSearchPage = new WikiSearchPageInjection(page);
+        var wikiSearchPage = new WikiSearchPageInjection(page);
         wikiSearchPage.navigate("https://www.wikipedia.org/");
         wikiSearchPage.search("input[name=\"search\"]", "playwright");
         wikiSearchPage.assertUrl("https://en.wikipedia.org/wiki/Playwright");
@@ -51,7 +51,7 @@ public class SearchTest extends TestFixtures {
     @Test
     void shouldSearchWikiFail2() {
         // page model
-        WikiSearchPage wikiSearchPage = new WikiSearchPage(page);
+        var wikiSearchPage = new WikiSearchPage(page);
         wikiSearchPage.navigate();
         wikiSearchPage.search("playwright");
         assertEquals("https://en.wikipedia.org/wiki/NotPlaywright", page.url());
