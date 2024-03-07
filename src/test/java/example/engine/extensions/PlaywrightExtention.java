@@ -10,8 +10,10 @@ import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
+import java.io.File;
 
 import java.nio.file.Paths;
+import java.nio.file.Path;
 
 import static java.util.Base64.getEncoder;
 
@@ -23,13 +25,19 @@ public class PlaywrightExtention implements
     protected Browser browser;
     protected BrowserContext browserContext;
     protected Page page;
+    protected Browser.NewContextOptions contextOptions;
 
     private final ReportingManager reportingManager = new ReportingManager();
+    private final Path videosPath = Path.of("target/videos/");
+    private final Path storageStatePath = Path.of("target/session/storageState.json");
+
 
     @Override
     public void beforeAll(ExtensionContext context) {
         // getting parameter passed in -Dbrowser
         //System.out.println(System.getProperty("browser"));
+	
+	new File(String.valueOf(storageStatePath)).delete();
 
         playwright = Playwright.create();
         browser = playwright.chromium().launch(
@@ -44,8 +52,11 @@ public class PlaywrightExtention implements
         String className = context.getTestClass().orElseThrow().getSimpleName();
         reportingManager.getOrCreateTestClassNode(className);
 
+	contextOptions = new Browser.NewContextOptions();
+	if(new File(String.valueOf(storageStatePath)).exists()) contextOptions.setStorageStatePath(storageStatePath);
+	
         browserContext = browser.newContext(
-                new Browser.NewContextOptions().setLocale("en-US")
+                contextOptions.setLocale("en-US")
                         .setRecordVideoDir(Paths.get("target/videos/"))
         );
         page = browserContext.newPage();
@@ -72,7 +83,8 @@ public class PlaywrightExtention implements
 
     @Override
     public void afterAll(ExtensionContext context) {
-        browser.close();
+        new File(String.valueOf(storageStatePath)).delete();
+	browser.close();
         playwright.close();
     }
 
