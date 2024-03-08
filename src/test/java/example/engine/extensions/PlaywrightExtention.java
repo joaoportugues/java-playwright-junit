@@ -29,7 +29,7 @@ public class PlaywrightExtention implements
 
     private final ReportingManager reportingManager = new ReportingManager();
     private final Path videosPath = Path.of("target/videos/");
-    private final Path storageStatePath = Path.of("target/session/storageState.json");
+    private final Path storageStatePath = Path.of("target/session");
 
 
     @Override
@@ -37,7 +37,8 @@ public class PlaywrightExtention implements
         // getting parameter passed in -Dbrowser
         //System.out.println(System.getProperty("browser"));
 	
-	new File(String.valueOf(storageStatePath)).delete();
+	new File(storageStatePath + "\\" + 
+			context.getTestClass().map(Class::getSimpleName).orElse("<noClass>") + ".json").delete();
 
         playwright = Playwright.create();
         browser = playwright.chromium().launch(
@@ -52,6 +53,7 @@ public class PlaywrightExtention implements
         String className = context.getTestClass().orElseThrow().getSimpleName();
         reportingManager.getOrCreateTestClassNode(className);
 
+	String filename = storageStatePath + "\\" + className + ".json";
 	contextOptions = new Browser.NewContextOptions();
 	if(new File(String.valueOf(storageStatePath)).exists()) contextOptions.setStorageStatePath(storageStatePath);
 	
@@ -83,7 +85,8 @@ public class PlaywrightExtention implements
 
     @Override
     public void afterAll(ExtensionContext context) {
-        new File(String.valueOf(storageStatePath)).delete();
+        new File(storageStatePath + "\\" + 
+			context.getTestClass().map(Class::getSimpleName).orElse("<noClass>") + ".json").delete();
 	browser.close();
         playwright.close();
     }

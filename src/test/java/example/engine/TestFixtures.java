@@ -21,7 +21,7 @@ import static java.util.Base64.getEncoder;
 public class TestFixtures {
 
     @RegisterExtension
-    final static PlaywrightExtention PLAYWRIGHT_EXTENTION = new PlaywrightExtention();
+    PlaywrightExtention PLAYWRIGHT_EXTENTION = new PlaywrightExtention();
 
 
     protected Page getPage() {
